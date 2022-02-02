@@ -1,0 +1,17 @@
+{
+    "type": "record",
+    "name": "job_config",
+    "fields": [{
+        "name": "schema",
+        "type": ["null", "string"]
+    }, {
+        "name": "jobId",
+        "type": ["null", "string"]
+    }, {
+        "name": "sessionId",
+        "type": ["null","string"]
+    }, {
+        "name": "xmlQuery",
+        "type": ["null", "string"]
+    }]
+}

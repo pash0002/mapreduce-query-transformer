@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.2.0"
+        classpath "ru.vyarus:gradle-quality-plugin:4.2.1"
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'ru.vyarus.quality'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'codenarc'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    implementation group: 'org.apache.hadoop', name: 'hadoop-rumen', version: '2.7.0'
+    implementation group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-core', version: '2.7.0'
+    implementation group: 'org.apache.hadoop', name: 'hadoop-common', version: '2.7.0'
+    implementation group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-common', version: '2.7.0'
+    implementation group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-hs', version: '2.7.0'
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.11.3"
+    testImplementation 'org.spockframework:spock-core:2.1-M2-groovy-3.0'
+}
+
+shadowJar {
+    zip64 true
+    manifest {
+        attributes 'Main-Class': "com.transformation.MapReduceQueryTransformationMain"
+    }
+    archiveFileName = "mapreduce_transformation.jar"
+}
+
+codenarcMain {
+    ignoreFailures false
+    maxPriority1Violations 0
+    maxPriority2Violations 10
+    maxPriority3Violations 256
+}

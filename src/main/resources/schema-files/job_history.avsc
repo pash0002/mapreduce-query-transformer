@@ -1,0 +1,23 @@
+{
+    "type": "record",
+    "name": "job_history",
+    "fields": [{
+        "name": "jobId",
+        "type": ["null", "string"]
+    }, {
+        "name": "userName",
+        "type": ["null", "string"]
+    }, {
+        "name": "workflowName",
+        "type": ["null","string"]
+    }, {
+        "name": "finishTime",
+        "type": ["null", "long"]
+    }, {
+        "name": "cpuTime",
+        "type": ["double","null"]
+    }, {
+        "name": "startTime",
+        "type": ["long","null"]
+    }]
+}
